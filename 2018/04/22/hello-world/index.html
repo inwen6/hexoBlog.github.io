@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
@@ -10,15 +10,17 @@
 
 
 
-    <meta name="description" content="blog,博客,hexo博客">
+    <meta name="description" content="inwen6,博客,hexo博客,inwen6博客">
+
+
+    <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
+
+
+<title>Hello | inwen6&#39;s Blog</title>
 
 
 
-<title>Hello World | inwen6&#39;s Blog</title>
-
-
-
-    <link rel="icon" href="/inwen6.github.io/favicon.ico">
+    <link rel="icon" href="/inwen6.github.io/bitbug_favicon.ico">
 
 
 
@@ -114,9 +116,9 @@
     <div class="tocbot-list">
     </div>
     <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a> -->
+        <a onclick="go_top()">返回首页</a>
+        <a onclick="go_bottom()">转到底部</a>
     </div>
 </div>
 
@@ -135,6 +137,7 @@
     )
 
     function expand_toc() {
+        console.log('全部收缩')
         var b = document.querySelector(".tocbot-toc-expand");
         tocbot.init({
             tocSelector: '.tocbot-list',
@@ -145,10 +148,11 @@
             scrollSmooth: true,
         });
         b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
+        b.innerHTML = "全部收缩"
     }
 
     function collapse_toc() {
+        console.log('展开全部')
         var b = document.querySelector(".tocbot-toc-expand");
         tocbot.init({
             tocSelector: '.tocbot-list',
@@ -159,7 +163,7 @@
             scrollSmooth: true,
         });
         b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
+        b.innerHTML = "展开全部"
     }
 
     function go_top() {
@@ -176,37 +180,38 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">Hello</h1>
             
                 <div class="post-meta">
                     
-                        Author: <a itemprop="author" rel="author" href="/">inwen6</a>
+                        作者: <a itemprop="author" rel="author" href="/">inwen6</a>
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 5, 2019&nbsp;&nbsp;22:48:51</a>
+                        日期: <a href="#">四月 22, 2018&nbsp;&nbsp;2:10:44</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    类别:
+                            
+                                <a href="/inwen6.github.io/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+            <p>欢迎来到 <a href="https://hexo.io/" target="_blank" rel="noopener">Inwen6的博客</a>! 这是第一篇文章。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><pre><code class="bash">$ hexo server</code></pre>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><pre><code class="bash">$ hexo generate</code></pre>
+<h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><pre><code class="bash">$ hexo deploy </code></pre>
 
         </div>
 
@@ -214,26 +219,26 @@
             <section class="post-copyright">
                 
                     <p class="copyright-item">
-                        <span>Author:</span>
+                        <span>作者:</span>
                         <span>inwen6</span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span>Permalink:</span>
-                        <span><a href="https://inwen6.github.io/2019/11/05/hello-world/">https://inwen6.github.io/2019/11/05/hello-world/</a></span>
+                        <span>永久链接:</span>
+                        <span><a href="https://inwen6.github.io/2018/04/22/hello-world/">https://inwen6.github.io/2018/04/22/hello-world/</a></span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span>License:</span>
+                        <span>许可证:</span>
                         <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
                 
                      <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                         <span>口号:</span>
+                         <span>吾日三省吾身?</span>
                      </p>
                 
 
@@ -241,15 +246,19 @@
         
         <section class="post-tags">
             <div>
-                <span>Tag(s):</span>
+                <span>标签:</span>
                 <span class="tag">
                     
+                    
+                        <a href="/inwen6.github.io/tag/JS/"># JS</a>
+                    
+                        
                 </span>
             </div>
             <div>
-                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
+                <a href="javascript:window.history.back();" target="_blank" rel="noopener">返回</a>
                 <span>· </span>
-                <a href="/inwen6.github.io/">home</a>
+                <a href="/inwen6.github.io/">主页</a>
             </div>
         </section>
         <section class="post-nav">
@@ -267,6 +276,46 @@
         <footer id="footer" class="footer">
     <div class="copyright">
         <span>© inwen6 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span id="sitetime"></span>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* 
+		Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数
+        */
+        var t1 = Date.UTC(2018,01,1,15,00,00); //北京时间2018-2-13 00:00:00 
+        var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond); 
+        var diff = t2-t1; 
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}
+	siteTime();
+</script>
+
+
     </div>
 </footer>
 

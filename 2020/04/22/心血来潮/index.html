@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
@@ -10,15 +10,17 @@
 
 
 
-    <meta name="description" content="blog,博客,hexo博客">
+    <meta name="description" content="inwen6,博客,hexo博客,inwen6博客">
 
+
+    <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
 <title>心血来潮 | inwen6&#39;s Blog</title>
 
 
 
-    <link rel="icon" href="/inwen6.github.io/favicon.ico">
+    <link rel="icon" href="/inwen6.github.io/bitbug_favicon.ico">
 
 
 
@@ -114,9 +116,9 @@
     <div class="tocbot-list">
     </div>
     <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a> -->
+        <a onclick="go_top()">返回首页</a>
+        <a onclick="go_bottom()">转到底部</a>
     </div>
 </div>
 
@@ -135,6 +137,7 @@
     )
 
     function expand_toc() {
+        console.log('全部收缩')
         var b = document.querySelector(".tocbot-toc-expand");
         tocbot.init({
             tocSelector: '.tocbot-list',
@@ -145,10 +148,11 @@
             scrollSmooth: true,
         });
         b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
+        b.innerHTML = "全部收缩"
     }
 
     function collapse_toc() {
+        console.log('展开全部')
         var b = document.querySelector(".tocbot-toc-expand");
         tocbot.init({
             tocSelector: '.tocbot-list',
@@ -159,7 +163,7 @@
             scrollSmooth: true,
         });
         b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
+        b.innerHTML = "展开全部"
     }
 
     function go_top() {
@@ -180,14 +184,21 @@
             
                 <div class="post-meta">
                     
-                        Author: <a itemprop="author" rel="author" href="/">inwen6</a>
+                        作者: <a itemprop="author" rel="author" href="/">inwen6</a>
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 22, 2020&nbsp;&nbsp;2:10:44</a>
+                        日期: <a href="#">四月 22, 2020&nbsp;&nbsp;2:10:44</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    类别:
+                            
+                                <a href="/inwen6.github.io/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+                            
+                        </span>
                     
                 </div>
             
@@ -201,26 +212,26 @@
             <section class="post-copyright">
                 
                     <p class="copyright-item">
-                        <span>Author:</span>
+                        <span>作者:</span>
                         <span>inwen6</span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span>Permalink:</span>
+                        <span>永久链接:</span>
                         <span><a href="https://inwen6.github.io/2020/04/22/%E5%BF%83%E8%A1%80%E6%9D%A5%E6%BD%AE/">https://inwen6.github.io/2020/04/22/%E5%BF%83%E8%A1%80%E6%9D%A5%E6%BD%AE/</a></span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span>License:</span>
+                        <span>许可证:</span>
                         <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
                 
                      <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                         <span>口号:</span>
+                         <span>吾日三省吾身?</span>
                      </p>
                 
 
@@ -228,21 +239,27 @@
         
         <section class="post-tags">
             <div>
-                <span>Tag(s):</span>
+                <span>标签:</span>
                 <span class="tag">
                     
+                    
+                        <a href="/inwen6.github.io/tag/VUE/"># VUE</a>
+                    
+                        
                 </span>
             </div>
             <div>
-                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
+                <a href="javascript:window.history.back();" target="_blank" rel="noopener">返回</a>
                 <span>· </span>
-                <a href="/inwen6.github.io/">home</a>
+                <a href="/inwen6.github.io/">主页</a>
             </div>
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/inwen6.github.io/2020/04/22/test/">test</a>
             
-            <a class="next" rel="next" href="/inwen6.github.io/2019/11/05/hello-world/">Hello World</a>
+            
+            <a class="next" rel="next" href="/inwen6.github.io/2018/04/22/hello-world/">Hello</a>
             
         </section>
 
@@ -254,6 +271,46 @@
         <footer id="footer" class="footer">
     <div class="copyright">
         <span>© inwen6 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span id="sitetime"></span>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* 
+		Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数
+        */
+        var t1 = Date.UTC(2018,01,1,15,00,00); //北京时间2018-2-13 00:00:00 
+        var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond); 
+        var diff = t2-t1; 
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}
+	siteTime();
+</script>
+
+
     </div>
 </footer>
 
