@@ -16,7 +16,7 @@
     <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
-<title>test | inwen6&#39;s Blog</title>
+<title>JS事件循环 | inwen6&#39;s Blog</title>
 
 
 
@@ -112,11 +112,75 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a> -->
+        <a onclick="go_top()">返回首页</a>
+        <a onclick="go_bottom()">转到底部</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        console.log('全部收缩')
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "全部收缩"
+    }
+
+    function collapse_toc() {
+        console.log('展开全部')
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "展开全部"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">test</h1>
+            <h1 class="post-title">JS事件循环</h1>
             
                 <div class="post-meta">
                     
@@ -125,16 +189,27 @@
 
                     
                         <span class="post-time">
-                        日期: <a href="#">四月 22, 2020&nbsp;&nbsp;5:18:01</a>
+                        日期: <a href="#">四月 26, 2020&nbsp;&nbsp;17:29:56</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    类别:
+                            
+                                <a href="/inwen6.github.io/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们都知道JavaScript是一个 <strong>单线程</strong> <strong>非阻塞</strong> 的脚本语言。<br>单线程意味着，JavaScript代码在执行的任何时候，都只有一个主线程来处理所有的任务。<br>而非阻塞则是当代码需要进行一项异步任务（无法立刻返回结果）的时候主线程会挂起一个（pending）这个任务，然后在异步任务返回结果的时候在根据相应的规则去执行相应的回调。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h2 id="浏览器环境下js引擎的事件循环机制"><a href="#浏览器环境下js引擎的事件循环机制" class="headerlink" title="浏览器环境下js引擎的事件循环机制"></a>浏览器环境下js引擎的事件循环机制</h2><h3 id="1-执行栈与事件队列"><a href="#1-执行栈与事件队列" class="headerlink" title="1.执行栈与事件队列"></a>1.执行栈与事件队列</h3><p>当JavaScript代码在执行的时候会将不同的变量存在内存中的不同位置：堆（heap）和栈（stack）中来加以区分。<br>其中，<strong>堆里存放的是一些对象</strong>（引用数据类型）。而 <strong>栈中则存放一些基础类型</strong> （基本数据类型）变量以及对象指针</p>
+<!-- >跳转[堆于栈](https://vue-x.top/2020/04/22/%E5%BF%83%E8%A1%80%E6%9D%A5%E6%BD%AE/)详情 -->
+<p><a href="https://www.cnblogs.com/cangqinglang/p/8967268.html" target="_blank" rel="noopener">参考链接</a></p>
+
         </div>
 
         
@@ -148,7 +223,7 @@
                 
                     <p class="copyright-item">
                         <span>永久链接:</span>
-                        <span><a href="https://inwen6.github.io/2020/04/22/test/">https://inwen6.github.io/2020/04/22/test/</a></span>
+                        <span><a href="https://inwen6.github.io/2020/04/26/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">https://inwen6.github.io/2020/04/26/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</a></span>
                     </p>
                 
                 
@@ -171,6 +246,10 @@
                 <span>标签:</span>
                 <span class="tag">
                     
+                    
+                        <a href="/inwen6.github.io/tag/JS/"># JS</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -181,10 +260,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/inwen6.github.io/2020/04/26/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">JS事件循环</a>
             
-            
-            <a class="next" rel="next" href="/inwen6.github.io/2020/04/22/%E5%BF%83%E8%A1%80%E6%9D%A5%E6%BD%AE/">心血来潮</a>
+            <a class="next" rel="next" href="/inwen6.github.io/2020/04/22/test/">test</a>
             
         </section>
 
