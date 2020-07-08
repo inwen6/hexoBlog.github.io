@@ -16,7 +16,7 @@
     <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
-<title>防抖与节流 | inwen6&#39;s Blog</title>
+<title>什么情况下a==1&amp;&amp;a==2&amp;&amp;a==3 | inwen6&#39;s Blog</title>
 
 
 
@@ -112,75 +112,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a> -->
-        <a onclick="go_top()">返回首页</a>
-        <a onclick="go_bottom()">转到底部</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        console.log('全部收缩')
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "全部收缩"
-    }
-
-    function collapse_toc() {
-        console.log('展开全部')
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "展开全部"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">防抖与节流</h1>
+            <h1 class="post-title">什么情况下a==1&amp;&amp;a==2&amp;&amp;a==3</h1>
             
                 <div class="post-meta">
                     
@@ -189,33 +125,16 @@
 
                     
                         <span class="post-time">
-                        日期: <a href="#">四月 29, 2020&nbsp;&nbsp;10:58:08</a>
+                        日期: <a href="#">七月 8, 2020&nbsp;&nbsp;22:02:57</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    类别:
-                            
-                                <a href="/inwen6.github.io/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间面试某上市公司的时候有被问到防抖与节流，但是只知道有这个东西 却没有真正的用过，现在来记录一下。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ul>
-<li>概念：<br>函数防抖(debounce)<blockquote>
-<p>在事件触发n秒后在执行函数 如果n秒内又被触发 则重新计时</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>监听鼠标移动事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">onmousemove</span>=<span class="string">"fn()"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">fn</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'触发'</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://wx2.sbimg.cn/2020/05/21/tetst.gif" alt="tetst.md.gif"><br>可以看到我只要我鼠标移动就会触发事件,如果这是ajax请求的话 显然不是我们想要的、优化一下。</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2>
+            
         </div>
 
         
@@ -229,7 +148,7 @@
                 
                     <p class="copyright-item">
                         <span>永久链接:</span>
-                        <span><a href="https://inwen6.github.io/2020/04/29/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">https://inwen6.github.io/2020/04/29/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</a></span>
+                        <span><a href="https://inwen6.github.io/2020/07/08/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8Ba-1-a-2-a-3/">https://inwen6.github.io/2020/07/08/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8Ba-1-a-2-a-3/</a></span>
                     </p>
                 
                 
@@ -252,10 +171,6 @@
                 <span>标签:</span>
                 <span class="tag">
                     
-                    
-                        <a href="/inwen6.github.io/tag/JS/"># JS</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -266,10 +181,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/inwen6.github.io/2020/05/04/HBuilder-X-%E5%88%9B%E5%BB%BAuniapp%E9%A1%B9%E7%9B%AE-%E5%9C%A8vscode%E4%B8%8A%E7%BC%96%E8%BE%91-%E5%B9%B6%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E8%B0%83%E8%AF%95/">HBuilder X 创建uniapp项目 在vscode上编辑  并在小程序开发工具调试</a>
+                <a class="prev" rel="prev" href="/inwen6.github.io/2020/07/08/%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/">使用箭头函数要注意的点</a>
             
             
-            <a class="next" rel="next" href="/inwen6.github.io/2020/04/26/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">JS事件循环</a>
+            <a class="next" rel="next" href="/inwen6.github.io/2020/05/17/Mac%E4%B8%8Bshell%E6%89%93%E5%BC%80%E8%BF%87%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">Mac下shell打开过慢解决方案</a>
             
         </section>
 
