@@ -16,7 +16,7 @@
     <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
-<title>Mac下File Zilla 查看历史记录账号密码 | inwen6&#39;s Blog</title>
+<title>new Vue()发生了什么? | inwen6&#39;s Blog</title>
 
 
 
@@ -180,7 +180,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Mac下File Zilla 查看历史记录账号密码</h1>
+            <h1 class="post-title">new Vue()发生了什么?</h1>
             
                 <div class="post-meta">
                     
@@ -189,14 +189,14 @@
 
                     
                         <span class="post-time">
-                        日期: <a href="#">七月 14, 2020&nbsp;&nbsp;11:36:39</a>
+                        日期: <a href="#">十月 15, 2020&nbsp;&nbsp;16:54:29</a>
                         </span>
                     
                     
                         <span class="post-category">
                     类别:
                             
-                                <a href="/inwen6.github.io/categories/%E9%97%B2%E8%B0%88%E6%9D%82%E8%AE%B0/">闲谈杂记</a>
+                                <a href="/inwen6.github.io/categories/Vue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Vue源码分析</a>
                             
                         </span>
                     
@@ -205,11 +205,16 @@
         </header>
 
         <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前用File Zilla 登录过的服务器账号 忘记密码 但是有历史记录能登录，于是就找这个文件夹，，记一下避免下次忘记。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><code>ls -a</code> 看看有没有 <code>.config</code> 隐藏文件，有的话 输入命令 <code>vim .config/filezilla/recentservers.xml</code><br>找到如下图代码就是了</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">Server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Host</span>&gt;</span>IP<span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Port</span>&gt;</span>端口<span class="tag">&lt;/<span class="name">Port</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Protocol</span>&gt;</span>1<span class="tag">&lt;/<span class="name">Protocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Type</span>&gt;</span>0<span class="tag">&lt;/<span class="name">Type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">User</span>&gt;</span>账号<span class="tag">&lt;/<span class="name">User</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Pass</span> <span class="attr">encoding</span>=<span class="string">"base64"</span>&gt;</span>密码（base64加密）<span class="tag">&lt;/<span class="name">Pass</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Logontype</span>&gt;</span>1<span class="tag">&lt;/<span class="name">Logontype</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">EncodingType</span>&gt;</span>Auto<span class="tag">&lt;/<span class="name">EncodingType</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">BypassProxy</span>&gt;</span>0<span class="tag">&lt;/<span class="name">BypassProxy</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Server</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>吐槽。。。。FileZilla 为啥不让把历史记录导出！必须添加站点才能导出。（难道是我姿势不对？）</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h3 id="执行this-init-事件"><a href="#执行this-init-事件" class="headerlink" title="执行this._init()事件"></a>执行this._init()事件</h3><blockquote>
+<p>初始化生命周期（initLifecycle()函数分析）<br><code>给实例初始化了一些属性，以$开头的供用户使用的外部属性，以_开头的供内部使用的内部属性</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">initLifecycle</span> (<span class="params">vm: Component</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> options = vm.$options</span><br><span class="line"></span><br><span class="line">  <span class="comment">// locate first non-abstract parent</span></span><br><span class="line">  <span class="keyword">let</span> parent = options.parent</span><br><span class="line">  <span class="keyword">if</span> (parent &amp;&amp; !options.abstract) &#123;</span><br><span class="line">    <span class="keyword">while</span> (parent.$options.abstract &amp;&amp; parent.$parent) &#123;</span><br><span class="line">      parent = parent.$parent</span><br><span class="line">    &#125;</span><br><span class="line">    parent.$children.push(vm)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  vm.$parent = parent</span><br><span class="line">  vm.$root = parent ? parent.$root : vm</span><br><span class="line"></span><br><span class="line">  vm.$children = []</span><br><span class="line">  vm.$refs = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  vm._watcher = <span class="literal">null</span></span><br><span class="line">  vm._inactive = <span class="literal">null</span></span><br><span class="line">  vm._directInactive = <span class="literal">false</span></span><br><span class="line">  vm._isMounted = <span class="literal">false</span></span><br><span class="line">  vm._isDestroyed = <span class="literal">false</span></span><br><span class="line">  vm._isBeingDestroyed = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>初始化even事件（initEvents()）<br>初始化渲染（initRender(vm)）<br>触发beforeCreate钩子（callHook(vm, ‘beforeCreate’)）<br>初始化Injections（initInjections(vm)）<br>初始化状态（initState(vm)）<br><code>1,初始化props</code><br><code>2,初始化methods</code><br><code>3,初始化data</code><br><code>4,初始化computed</code><br><code>5,初始化watch</code><br>初始化Provide（initProvide(vm)）<br>触发Create钩子（callHook(vm, ‘created’)）<br>最后检测vm是否有el属性，有就调用vm.$mount()</p>
+</blockquote>
+<h3 id="执行vm-mount"><a href="#执行vm-mount" class="headerlink" title="执行vm.$mount()"></a>执行vm.$mount()</h3><blockquote>
+<p>执行vm.$mount() （解析template /el并转换为渲染函数 ）</p>
+</blockquote>
 
         </div>
 
@@ -224,7 +229,7 @@
                 
                     <p class="copyright-item">
                         <span>永久链接:</span>
-                        <span><a href="https://inwen6.github.io/2020/07/14/Mac%E4%B8%8BFile-Zilla-%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">https://inwen6.github.io/2020/07/14/Mac%E4%B8%8BFile-Zilla-%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</a></span>
+                        <span><a href="https://inwen6.github.io/2020/10/15/new-Vue-%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">https://inwen6.github.io/2020/10/15/new-Vue-%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</a></span>
                     </p>
                 
                 
@@ -247,6 +252,10 @@
                 <span>标签:</span>
                 <span class="tag">
                     
+                    
+                        <a href="/inwen6.github.io/tag/VUE/"># VUE</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -257,10 +266,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/inwen6.github.io/2020/10/15/new-Vue-%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new Vue()发生了什么?</a>
             
-            
-            <a class="next" rel="next" href="/inwen6.github.io/2020/07/08/%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9/">使用箭头函数要注意的点</a>
+            <a class="next" rel="next" href="/inwen6.github.io/2020/07/14/Mac%E4%B8%8BFile-Zilla-%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">Mac下File Zilla 查看历史记录账号密码</a>
             
         </section>
 
