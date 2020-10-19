@@ -16,7 +16,7 @@
     <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
-<title>正则表达式 | inwen6&#39;s Blog</title>
+<title>Category: Vue源码分析（笔记） | inwen6&#39;s Blog</title>
 
 
 
@@ -109,155 +109,39 @@
     }
 </script>
         <div class="main">
-            <div class="container">
+            
+
+
+    
+<div class="container">
+    <div class="post-wrap categories">
+        <h2 class="post-title">-&nbsp;Categories&nbsp;·&nbsp;Vue源码分析（笔记）-</h2>
+    </div>
+    <div class="post-wrap archive">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">展开全部</a> -->
-        <a onclick="go_top()">返回首页</a>
-        <a onclick="go_bottom()">转到底部</a>
-    </div>
+        
+
+        
+            <h3>2020</h3>
+        
+
+        <article class="archive-item">
+            <a class="archive-item-link" href="/inwen6.github.io/2020/10/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B/">Vue的数据监测</a>
+            <span class="archive-item-date">十月 19, 2020</span>
+        </article>
+    
+        
+
+        
+
+        <article class="archive-item">
+            <a class="archive-item-link" href="/inwen6.github.io/2020/10/15/new-Vue-%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new Vue()发生了什么?</a>
+            <span class="archive-item-date">十月 15, 2020</span>
+        </article>
+    
+    
 </div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        console.log('全部收缩')
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "全部收缩"
-    }
-
-    function collapse_toc() {
-        console.log('展开全部')
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "展开全部"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
-
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">正则表达式</h1>
-            
-                <div class="post-meta">
-                    
-                        作者: <a itemprop="author" rel="author" href="/">inwen6</a>
-                    
-
-                    
-                        <span class="post-time">
-                        日期: <a href="#">十月 16, 2020&nbsp;&nbsp;10:47:44</a>
-                        </span>
-                    
-                    
-                </div>
-            
-        </header>
-
-        <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
-        </div>
-
-        
-            <section class="post-copyright">
-                
-                    <p class="copyright-item">
-                        <span>作者:</span>
-                        <span>inwen6</span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>永久链接:</span>
-                        <span><a href="https://inwen6.github.io/2020/10/16/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">https://inwen6.github.io/2020/10/16/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</a></span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>许可证:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
-                    </p>
-                
-                
-                     <p class="copyright-item">
-                         <span>口号:</span>
-                         <span>吾日三省吾身?</span>
-                     </p>
-                
-
-            </section>
-        
-        <section class="post-tags">
-            <div>
-                <span>标签:</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/inwen6.github.io/tag/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"># 正则表达式</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();" target="_blank" rel="noopener">返回</a>
-                <span>· </span>
-                <a href="/inwen6.github.io/">主页</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/inwen6.github.io/2020/10/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B/">Vue的数据监测</a>
-            
-            
-            <a class="next" rel="next" href="/inwen6.github.io/2020/10/15/new-Vue-%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">new Vue()发生了什么?</a>
-            
-        </section>
-
-
-    </article>
 </div>
 
         </div>
