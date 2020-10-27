@@ -16,7 +16,7 @@
     <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
-<title>Vue的数据监测 | inwen6&#39;s Blog</title>
+<title>Vue.use源码分析 | inwen6&#39;s Blog</title>
 
 
 
@@ -180,7 +180,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Vue的数据监测</h1>
+            <h1 class="post-title">Vue.use源码分析</h1>
             
                 <div class="post-meta">
                     
@@ -189,7 +189,7 @@
 
                     
                         <span class="post-time">
-                        日期: <a href="#">十月 19, 2020&nbsp;&nbsp;9:46:25</a>
+                        日期: <a href="#">十月 27, 2020&nbsp;&nbsp;17:54:13</a>
                         </span>
                     
                     
@@ -205,24 +205,30 @@
         </header>
 
         <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  Vue的特点之一，数据驱动视图</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>1，使数据变的可观测</p>
-<p>var obj = {}</p>
-<p>Object.defineProperty()</p>
-<p>通过observer类将正常的object转换成可观测的object </p>
-<p>2，怎么确保没有重复操作呢</p>
-<p>给object对象添加“__ob__”属性 值为该value的Observer实例</p>
-<p>现在数据是可观测的了  如果数据发生变化 我应该通知谁去更改视图呢 总不能把所有视图都更新吧？</p>
-<p>3，依赖收集</p>
-<p>谁用到了这个数据，我就收集到一个数组里，等到数据更新了 我在通知你更新</p>
-<p>那何时收集？何时更新呢？</p>
-<p>可观测的数据被获取时触发getter属性，可以在getter中收集依赖，<br>同样数据在修改时会触发setter属性，可以再setter中通知依赖更新</p>
-<p>4，把依赖收集到哪里？</p>
-<p>把依赖收集到一个Dep类中，里面初始化一个subs数组用来存放依赖， 并定义几个实例方进行添加、删除、更新等操作</p>
-<p>依赖到底是谁？<br>虽然依赖是收集起来了 但是到底是谁用到这个依赖了呢？</p>
-<p>5，Watcher 类来处理’谁‘用到了这个依赖</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>首先，通过Object.defineProperty()方法实现了数据的可观测性，并且封装了Observer类，让我们能够方便的把object中的数据转换成getter/setter的形式来侦测变化<br>接着，依赖收集，在getter中收集依赖，在setter中更新依赖，<br>最后，我们为每个依赖创建Watcher实例，当数据变化时，通知Watcher实例，由Watcher实例去做真是的更新操作。</p>
-<p>大致流程：<br>1，Data通过observer转换成了getter/setter的形式来追踪变化，<br>2，当外界通过Watcher来读取数据的时候，触发getter从而将Watcher添加到依赖中去<br>3，当数据发生变化是触发setter，从而向Dep中的依赖（既Watcher）发送通知<br>4，Watcher接到通知之后，会想外界发送通知，变化通知到外界后可能会触发视图更新、等。。</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>调用 <code>initUse(Vue)</code> 源码位置 src/core/global-api/use.js</p>
+<pre><code class="js">
+<span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">initUse</span> (<span class="params">Vue: GlobalAPI</span>) </span>{ 
+  Vue.use = <span class="function"><span class="keyword">function</span> (<span class="params">plugin: Function | Object</span>) </span>{
+    <span class="keyword">const</span> installedPlugins = (<span class="keyword">this</span>._installedPlugins || (<span class="keyword">this</span>._installedPlugins = []))
+    <span class="comment">// 判断是否已经安装，没有则安装，有则返回this（只能安装一次）</span>
+    <span class="keyword">if</span> (installedPlugins.indexOf(plugin) &gt; <span class="number">-1</span>) {
+      <span class="keyword">return</span> <span class="keyword">this</span>
+    } 
+
+    <span class="comment">// additional parameters </span>
+    <span class="keyword">const</span> args = toArray(<span class="built_in">arguments</span>, <span class="number">1</span>) <span class="comment">//toArray将类数组变成真正的数组 ,第二个参数是从索引1开始（ 0是插件本身 例：Vue.use(插件，参数) ）</span>
+    args.unshift(<span class="keyword">this</span>) <span class="comment">//这里的this是Vue，这样的话每个插件都会有Vue实例</span>
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> plugin.install === <span class="string">'function'</span>) {
+      plugin.install.apply(plugin, args)
+    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> plugin === <span class="string">'function'</span>) {
+      plugin.apply(<span class="literal">null</span>, args)
+    }
+    installedPlugins.push(plugin) <span class="comment">//添加到以注册组件数组中</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>
+  }
+}
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> Vue.use()是通过<code>initUse</code>进行初始化的<br> Vue.use接收一个参数，检测当前实例上是否已经安装了次插件<br> 通过toArray方法处理类数组并返回真正的数组<br> 向该数组最前面添加一个当前实例<br> 判断当前插件是否存在<code>install</code>方法，存在就调用，不存在调用函数本身<br> 将注册后的插件添加到<code>installedPlugins</code>数组，避免重复添加</p>
 
         </div>
 
@@ -237,7 +243,7 @@
                 
                     <p class="copyright-item">
                         <span>永久链接:</span>
-                        <span><a href="https://inwen6.github.io/2020/10/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B/">https://inwen6.github.io/2020/10/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B/</a></span>
+                        <span><a href="https://inwen6.github.io/2020/10/27/Vue-use%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">https://inwen6.github.io/2020/10/27/Vue-use%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</a></span>
                     </p>
                 
                 
@@ -261,7 +267,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/inwen6.github.io/tag/VUE/"># VUE</a>
+                        <a href="/inwen6.github.io/tag/Vue/"># Vue</a>
                     
                         
                 </span>
@@ -274,10 +280,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/inwen6.github.io/2020/10/27/Vue-use%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Vue.use源码分析</a>
             
-            
-            <a class="next" rel="next" href="/inwen6.github.io/2020/10/16/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+            <a class="next" rel="next" href="/inwen6.github.io/2020/10/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B/">Vue的数据监测</a>
             
         </section>
 
