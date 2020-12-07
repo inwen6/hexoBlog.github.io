@@ -16,7 +16,7 @@
     <meta name="keywords" content="inwen6,博客,hexo博客,inwen6博客">
 
 
-<title>Vue.use源码分析 | inwen6&#39;s Blog</title>
+<title>Vue项目自动上传到sftp | inwen6&#39;s Blog</title>
 
 
 
@@ -180,7 +180,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Vue.use源码分析</h1>
+            <h1 class="post-title">Vue项目自动上传到sftp</h1>
             
                 <div class="post-meta">
                     
@@ -189,14 +189,14 @@
 
                     
                         <span class="post-time">
-                        日期: <a href="#">十月 27, 2020&nbsp;&nbsp;17:54:13</a>
+                        日期: <a href="#">十二月 7, 2020&nbsp;&nbsp;18:35:15</a>
                         </span>
                     
                     
                         <span class="post-category">
                     类别:
                             
-                                <a href="/inwen6.github.io/categories/Vue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/">Vue源码分析（笔记）</a>
+                                <a href="/inwen6.github.io/categories/%E9%97%B2%E8%B0%88%E6%9D%82%E8%AE%B0/">闲谈杂记</a>
                             
                         </span>
                     
@@ -205,30 +205,16 @@
         </header>
 
         <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>调用 <code>initUse(Vue)</code> 源码位置 src/core/global-api/use.js</p>
-<pre><code class="js">
-<span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">initUse</span> (<span class="params">Vue: GlobalAPI</span>) </span>{ 
-  Vue.use = <span class="function"><span class="keyword">function</span> (<span class="params">plugin: Function | Object</span>) </span>{
-    <span class="keyword">const</span> installedPlugins = (<span class="keyword">this</span>._installedPlugins || (<span class="keyword">this</span>._installedPlugins = []))
-    <span class="comment">// 判断是否已经安装，没有则安装，有则返回this（只能安装一次）</span>
-    <span class="keyword">if</span> (installedPlugins.indexOf(plugin) &gt; <span class="number">-1</span>) {
-      <span class="keyword">return</span> <span class="keyword">this</span>
-    } 
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前没事的时候用Jenkins搭建的自动化部署，不知道什么原因 大概率我git提交之后Jenkins老是崩掉，由于太菜 没去找原因。<br>原本搭建它是为了偷懒，结果凉凉 这次就想着能不能我每次项目写好之后 用命令手动提交到服务器上 就有了这篇文章。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>需要 npm 下载这个包<code>ssh2-sftp-client</code> <a href="https://www.npmjs.com/package/ssh2-sftp-client" target="_blank" rel="noopener">链接</a></p>
+<p><code>sftp.js</code>文件 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> Client = <span class="built_in">require</span>(<span class="string">'ssh2-sftp-client'</span>);</span><br><span class="line"><span class="keyword">const</span> sftp = <span class="keyword">new</span> Client();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  host: <span class="string">'xx.xxxx.xxx.xxx'</span>,</span><br><span class="line">  port: <span class="string">'22'</span>,</span><br><span class="line">  username: <span class="string">'xxxx'</span>,</span><br><span class="line">  password: <span class="string">'xxxxxx'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 上传文件到sftp</span></span><br><span class="line"><span class="comment"> * @param &#123; Object &#125; config    sftp 链接配置参数</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; config.host sftp 主机地址</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; config.port sftp 端口号</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; config.username sftp 用户名</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; config.password sftp 密码</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @param &#123; Object &#125; options 配置参数</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; localStatic // 本地静态资源文件夹路径</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; remoteStatic // 服务器静态资源文件夹路径</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; localFile // 本地html页面</span></span><br><span class="line"><span class="comment"> * @param &#123; String &#125; remoteFile // 服务器html页面</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">config, options</span>) </span>&#123;</span><br><span class="line">  sftp.connect(config).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'‘sftp链接成功‘'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'‘文件上传中‘'</span>);</span><br><span class="line">    <span class="keyword">return</span> sftp.uploadDir(options.localStatic, options.remoteStatic);</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'‘文件上传成功‘'</span>,data);</span><br><span class="line">    sftp.end();</span><br><span class="line">  &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'‘上传失败‘'</span>, err);</span><br><span class="line">    sftp.end();</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 上传文件</span></span><br><span class="line">upload(config, &#123;</span><br><span class="line">  <span class="string">'localStatic'</span>: path.resolve(__dirname, <span class="string">'./dist'</span>), <span class="comment">// 本地文件夹路径</span></span><br><span class="line">  <span class="string">'remoteStatic'</span>: <span class="string">'/root/File'</span>, <span class="comment">// 服务器文件夹路径器</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-    <span class="comment">// additional parameters </span>
-    <span class="keyword">const</span> args = toArray(<span class="built_in">arguments</span>, <span class="number">1</span>) <span class="comment">//toArray将类数组变成真正的数组 ,第二个参数是从索引1开始（ 0是插件本身 例：Vue.use(插件，参数) ）</span>
-    args.unshift(<span class="keyword">this</span>) <span class="comment">//这里的this是Vue，这样的话每个插件都会有Vue实例</span>
-    <span class="keyword">if</span> (<span class="keyword">typeof</span> plugin.install === <span class="string">'function'</span>) {
-      plugin.install.apply(plugin, args)
-    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> plugin === <span class="string">'function'</span>) {
-      plugin.apply(<span class="literal">null</span>, args)
-    }
-    installedPlugins.push(plugin) <span class="comment">//添加到以注册组件数组中</span>
-    <span class="keyword">return</span> <span class="keyword">this</span>
-  }
-}
-</code></pre>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> Vue.use()是通过<code>initUse</code>进行初始化的<br> Vue.use接收一个参数，检测当前实例上是否已经安装了次插件<br> 通过toArray方法处理类数组并返回真正的数组<br> 向该数组最前面添加一个当前实例<br> 判断当前插件是否存在<code>install</code>方法，存在就调用，不存在调用函数本身<br> 将注册后的插件添加到<code>installedPlugins</code>数组，避免重复添加</p>
+<p>最后添加个自定义的命令</p>
+<p><code>package.json</code>文件 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vue-cli-service build"</span>,</span><br><span class="line">    <span class="string">"lint"</span>: <span class="string">"vue-cli-service lint"</span>,</span><br><span class="line">    <span class="string">"ftp"</span>: <span class="string">"node sftp.js"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行 <code>npm run ftp</code></p>
 
         </div>
 
@@ -243,7 +229,7 @@
                 
                     <p class="copyright-item">
                         <span>永久链接:</span>
-                        <span><a href="https://inwen6.github.io/2020/10/27/Vue-use%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">https://inwen6.github.io/2020/10/27/Vue-use%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</a></span>
+                        <span><a href="https://inwen6.github.io/2020/12/07/Vue%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%88%B0sftp/">https://inwen6.github.io/2020/12/07/Vue%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%88%B0sftp/</a></span>
                     </p>
                 
                 
@@ -267,7 +253,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/inwen6.github.io/tag/Vue/"># Vue</a>
+                        <a href="/inwen6.github.io/tag/VUE/"># VUE</a>
                     
                         
                 </span>
@@ -280,10 +266,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/inwen6.github.io/2020/12/07/Vue%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%88%B0sftp/">Vue项目自动上传到sftp</a>
             
-            
-            <a class="next" rel="next" href="/inwen6.github.io/2020/10/19/Vue%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B/">Vue的数据监测</a>
+            <a class="next" rel="next" href="/inwen6.github.io/2020/10/27/Vue-use%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Vue.use源码分析</a>
             
         </section>
 
